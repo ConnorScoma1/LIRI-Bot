@@ -1,9 +1,9 @@
 var Spotify = require("node-spotify-api");
-var apikey = require("./apikey");
+var apikey = require("./apikey.js");
 var request = require("request");
 var fs = require("fs");
 var moment = require("moment");
-var spotify = new Spotify(keys.spotify);
+var spotify = new Spotify(apikey.spotify);
 var input = process.argv[2];
 var search = "";
 var data1;
@@ -16,12 +16,13 @@ var data7;
 var data8;
 
 var inputLine = "";
+
 for (var i = 0; i < process.argv.length; i++) {
-  inputLine += process.argv[i] + " ";
+  inputLine += (process.argv[i] + " ");
 }
 
 for (var i = 3; i < process.argv.length; i++) {
-  search += process.argv[i] + " ";
+  search += (process.argv[i] + " ");
 }
 
 search = search.trim();
@@ -54,8 +55,7 @@ function concertThis() {
   request(
     "https://rest.bandsintown.com/artists" +
       search +
-      "event/13722599?app_id=foo&artist=" +
-      search,
+      "event/13722599?app_id",
     function(error, response, body) {
       if (JSON.parse(body)[0] === undefined) {
         console.log("there is no shows :(");
