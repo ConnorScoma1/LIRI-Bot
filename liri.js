@@ -1,9 +1,9 @@
 var Spotify = require("node-spotify-api");
-var apikey = require("./apikey.js");
+var key = require("./key.js");
 var request = require("request");
 var fs = require("fs");
 var moment = require("moment");
-var spotify = new Spotify(apikey.spotify);
+var spotify = new Spotify(key.spotify);
 var input = process.argv[2];
 var search = "";
 var data1;
