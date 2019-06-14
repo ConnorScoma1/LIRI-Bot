@@ -6,14 +6,6 @@ var moment = require("moment");
 var spotify = new Spotify(key.spotify);
 var input = process.argv[2];
 var search = "";
-var data1;
-var data2;
-var data3;
-var data4;
-var data5;
-var data6;
-var data7;
-var data8;
 
 var inputLine = "";
 
@@ -93,13 +85,15 @@ function movieThis() {
   }
 
   request(
-    "http://www.omdbapi.com/?i=" + search + "&apikey=2dbe22c7&",
+    "http://www.omdbapi.com/?t=" + search + "&y=&plot=short&apikey=trilogy",
     function(error, response) {
-        
-        console.log(response)
+
+        var newResponse = response.body.split(',')
+
+        console.log(newResponse)
 
         console.log('\n========================')
-        console.log("Title: ")
+        // console.log("Title: " + response.data)
         console.log("IMDb Rating: ")
         console.log("Rotten Tomato Rating: ")
         console.log("Country: ")
@@ -112,17 +106,5 @@ function movieThis() {
   );
 }
 
-// function doWhat() {
-//     fs.readFile("random.txt", "utf-8", function(error, data){
-//         if(error) {
-//             console.log(error)
-//         }
-
-//         var dataArray = data.split(",");
-//         input = dataArray[0];
-//         search = dataArray[1];
-//         spotifyThis()
-//     })
-// }
 
 
