@@ -31,4 +31,11 @@
 |Bands In Town   |`node Liri Concert-This`       |Concert Info                 |
 
 
+## Spotify In Action
 ![](SpotifyThisSong.gif)
+
+## OMDb In Action
+![](concertThis.gif)
+
+## Bands In Town In Action
+![](movieThis.gif)
