@@ -1,4 +1,5 @@
 var Spotify = require("node-spotify-api");
+var axios = require('axios');
 var key = require("./key.js");
 var request = require("request");
 var fs = require("fs");
@@ -6,6 +7,7 @@ var moment = require("moment");
 var spotify = new Spotify(key.spotify);
 var input = process.argv[2];
 var search = "";
+
 
 var inputLine = "";
 
@@ -37,23 +39,23 @@ switch (input) {
 }
 
 function concertThis() {
-  if (!search) {
-    search = "Nothing";
-  }
-  request(
-    "http://www.bandsintown.com/event/13722599/buy_tickets?app_id=foo&artist=" + search + "&came_from=67",
-    function(error, response) {
 
-        console.log(response)
+  var artist = search
+  var bandURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"
 
-        // Name of Venue
-        // Venue City
-        // Venue Region
+  axios.get(bandURL).then(function(results){
 
-       
-      }
+    var venue = results.data[0].venue.name
+    var location = results.data[0].venue.city
+    var date = results.data[0].datetime
     
-  );
+    console.log('\n============================')
+    console.log('Venue: ' + venue)
+    console.log('Venue Location: ' + location)
+    console.log('Venue Date: ' + moment(date).format('MM/DD'))
+    console.log('============================')
+  })
+  
 }
 
 function spotifyThis() {
